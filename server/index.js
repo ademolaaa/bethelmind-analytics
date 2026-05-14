@@ -1,14 +1,18 @@
 const express = require('express');
+const cors = require('cors');
 const { scrapeJiji } = require('./jijiScraper');
 const WhatsAppBot = require('./whatsappBot');
 
+
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 // Initialize WhatsApp Bot
 let whatsappBot = null;
 
+app.use(cors());
 app.use(express.json());
+
 
 app.get('/', (req, res) => {
   res.send('Hello from the scraping server!');
@@ -252,6 +256,10 @@ app.use((req, res) => {
   res.status(404).json({ error: 'Endpoint not found' });
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+if (process.env.NODE_ENV !== 'test' && !process.env.VERCEL) {
+  app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+  });
+}
+
+module.exports = app;

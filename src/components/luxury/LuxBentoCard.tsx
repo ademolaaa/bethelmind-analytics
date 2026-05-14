@@ -80,7 +80,18 @@ export default function LuxBentoCard({
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       className={containerClasses}
     >
+      {/* Liquid Shiny Effect */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <motion.div 
+          initial={{ x: "-100%", opacity: 0 }}
+          whileHover={{ x: "100%", opacity: 0.1 }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent -skew-x-12"
+        />
+      </div>
+
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
       
       {href ? (
         <Link to={href} className="block h-full">

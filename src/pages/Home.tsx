@@ -4,14 +4,13 @@ import { useContent } from "@/context/useContent";
 import Seo from "@/components/Seo";
 import WhatsAppCTA from "@/components/WhatsAppCTA";
 import LuxBentoCard from "@/components/luxury/LuxBentoCard";
+import GlassContainer from "@/components/luxury/GlassContainer";
 import RichText from "@/components/RichText";
 import { resolveCmsIcon } from "@/lib/iconMap";
 import { solutions, featuredSolutions } from "@/data/solutions";
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
-
-const placeholderFrames = Array.from({ length: 24 }, (_, i) => (i % 2 === 0 ? "/images/lux-hero.svg" : "/images/lux-audit.svg"));
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -38,6 +37,10 @@ const itemVariants = {
 
 export default function Home() {
   const { content, isLoading, cmsMeta, cmsSolutions } = useContent();
+  const { scrollY } = useScroll();
+  
+  const y1 = useTransform(scrollY, [0, 1000], [0, 200]);
+  const y2 = useTransform(scrollY, [0, 1000], [0, -150]);
 
   if (isLoading) {
     return (
@@ -76,26 +79,23 @@ export default function Home() {
         {/* Background Depth Orbs & Noise */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <motion.div 
+            style={{ y: y1 }}
             animate={{ 
               scale: [1, 1.2, 1],
               opacity: [0.3, 0.5, 0.3],
-              x: [0, 50, 0],
-              y: [0, 30, 0]
             }}
             transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
             className="absolute top-1/4 -left-20 w-[60%] h-[60%] bg-primary/20 rounded-full blur-[160px]" 
           />
           <motion.div 
+            style={{ y: y2 }}
             animate={{ 
               scale: [1, 1.3, 1],
               opacity: [0.2, 0.4, 0.2],
-              x: [0, -40, 0],
-              y: [0, -50, 0]
             }}
             transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2 }}
             className="absolute bottom-1/4 -right-20 w-[60%] h-[60%] bg-accent/20 rounded-full blur-[160px]" 
           />
-          {/* Grain/Noise Overlay */}
           <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
         </div>
 
@@ -118,20 +118,14 @@ export default function Home() {
             <span className="text-gradient-gold">{content.hero.headlineEnd}</span>
           </motion.h1>
 
-          <motion.div 
-            variants={itemVariants}
-            className="mt-6 max-w-2xl mx-auto"
-          >
+          <motion.div variants={itemVariants} className="mt-6 max-w-2xl mx-auto">
             <RichText 
               html={content.hero.subheadline} 
               className="text-xl sm:text-2xl text-foreground/70 font-light leading-relaxed tracking-tight text-pretty" 
             />
           </motion.div>
 
-          <motion.div 
-            variants={itemVariants}
-            className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6"
-          >
+          <motion.div variants={itemVariants} className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6">
             <WhatsAppCTA source="home_hero_new">
               <button className="lux-button lux-button-primary group px-10">
                 Start Transformation
@@ -146,20 +140,16 @@ export default function Home() {
             </Link>
           </motion.div>
           
-          {/* Hero UI Preview (Floating) */}
-          <motion.div 
-            variants={itemVariants}
-            className="mt-24 relative max-w-5xl mx-auto"
-          >
+          {/* Hero UI Preview */}
+          <motion.div variants={itemVariants} className="mt-24 relative max-w-5xl mx-auto">
             <div className="relative aspect-[16/9] rounded-[2.5rem] overflow-hidden lux-border-gradient shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-t from-primary-navy via-transparent to-transparent z-10" />
               <img 
                 src="/images/lux-hero.svg" 
                 alt="Elite Dashboard Preview" 
-                className="w-full h-full object-cover opacity-60 scale-105 group-hover:scale-100 transition-transform duration-1000" 
+                className="w-full h-full object-cover opacity-60 scale-105" 
               />
               
-              {/* Floating Dashboard Elements */}
               <motion.div 
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -170,7 +160,6 @@ export default function Home() {
                    <span className="text-[10px] font-bold uppercase tracking-widest text-foreground/60">Live Analytics</span>
                  </div>
                  <div className="text-2xl font-bold text-gradient-gold">₦2.4M</div>
-                 <div className="text-[10px] text-foreground/40 font-medium">Conversion Value (24h)</div>
               </motion.div>
 
               <motion.div 
@@ -194,10 +183,7 @@ export default function Home() {
 
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-foreground/40">
           <span className="text-[10px] uppercase tracking-[0.2em] font-bold">Scroll to Explore</span>
-          <motion.div 
-            animate={{ y: [0, 5, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
+          <motion.div animate={{ y: [0, 5, 0] }} transition={{ duration: 2, repeat: Infinity }}>
             <ChevronDown className="w-4 h-4" />
           </motion.div>
         </div>
@@ -219,15 +205,15 @@ export default function Home() {
               </h2>
               <p className="text-xl text-foreground/60 leading-relaxed mb-10 max-w-xl">
                 We bridge the gap between local market realities and global digital standards. 
-                Our solutions are built for speed, reliability, and elegance, ensuring your business stands out.
+                Our solutions are built for speed, reliability, and elegance.
               </p>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 {[
-                  { icon: ShieldCheck, title: "Enterprise Grade", desc: "Security and scalability built-in from day one." },
-                  { icon: Globe, title: "Global Design", desc: "Aesthetics that compete on the international stage." },
-                  { icon: Zap, title: "Lightning Fast", desc: "Optimized for Nigerian networks and devices." },
-                  { icon: Smartphone, title: "Mobile First", desc: "Seamless experience across all screen sizes." }
+                  { icon: ShieldCheck, title: "Enterprise Grade", desc: "Security and scalability built-in." },
+                  { icon: Globe, title: "Global Design", desc: "Aesthetics that compete internationally." },
+                  { icon: Zap, title: "Lightning Fast", desc: "Optimized for Nigerian networks." },
+                  { icon: Smartphone, title: "Mobile First", desc: "Seamless on all screen sizes." }
                 ].map((item, i) => (
                   <motion.div 
                     key={i} 
@@ -236,7 +222,7 @@ export default function Home() {
                     transition={{ delay: i * 0.1 }}
                     className="flex flex-col gap-4 group aura-gold"
                   >
-                    <div className="h-14 w-14 rounded-2xl glass flex items-center justify-center text-primary group-hover:scale-110 group-hover:shadow-gold transition-all duration-500">
+                    <div className="h-14 w-14 rounded-2xl glass flex items-center justify-center text-primary group-hover:scale-110 transition-all duration-500">
                       <item.icon className="w-7 h-7" />
                     </div>
                     <div>
@@ -256,13 +242,12 @@ export default function Home() {
               className="relative aspect-square"
             >
                <div className="absolute inset-0 bg-primary/20 rounded-[3rem] blur-[100px] transform rotate-12" />
-               <div className="relative h-full w-full rounded-[3rem] overflow-hidden lux-border-gradient">
+               <GlassContainer className="h-full w-full">
                  <img src="/images/lux-audit.svg" alt="Digital Excellence" className="w-full h-full object-cover" />
                  <div className="absolute inset-0 bg-gradient-to-t from-primary-navy/80 to-transparent" />
                  
-                 {/* Proof Element */}
                  <div className="absolute bottom-10 left-10 right-10">
-                   <div className="glass p-6 rounded-2xl flex items-center justify-between">
+                   <GlassContainer className="p-6 flex items-center justify-between !rounded-2xl" animate={false}>
                      <div>
                        <div className="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">Impact Analysis</div>
                        <div className="text-2xl font-bold">400% Growth</div>
@@ -270,15 +255,15 @@ export default function Home() {
                      <div className="h-10 w-10 rounded-full bg-primary flex items-center justify-center text-primary-navy">
                        <ArrowRight className="w-5 h-5" />
                      </div>
-                   </div>
+                   </GlassContainer>
                  </div>
-               </div>
+               </GlassContainer>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Solutions Showcase - Bento Grid Style */}
+      {/* Solutions Showcase */}
       <section className="pro-section relative">
         <div className="pro-container">
           <div className="max-w-3xl mb-20">
@@ -290,7 +275,7 @@ export default function Home() {
             >
               <h2 className="text-4xl sm:text-6xl font-bold mb-6">Curated Solutions</h2>
               <p className="text-xl text-foreground/60 leading-relaxed">
-                Tailored digital ecosystems designed for specific industry needs. From conversion funnels to enterprise CRM.
+                Tailored digital ecosystems designed for specific industry needs.
               </p>
             </motion.div>
           </div>
@@ -306,9 +291,7 @@ export default function Home() {
                   tag="Premium Edition"
                   href={`/solutions/${solution.id}`}
                   variant={isLarge ? "gold" : "default"}
-                  className={cn(
-                    isLarge ? "md:col-span-3 lg:col-span-6" : "md:col-span-3 lg:col-span-3"
-                  )}
+                  className={cn(isLarge ? "md:col-span-3 lg:col-span-6" : "md:col-span-3 lg:col-span-3")}
                   icon={solution.icon ? <solution.icon className="w-6 h-6" /> : <Sparkles className="w-6 h-6" />}
                   image="/images/lux-hero.svg"
                 />
@@ -316,13 +299,7 @@ export default function Home() {
             })}
           </div>
           
-          <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            viewport={{ once: true }}
-            className="mt-20 text-center"
-          >
+          <motion.div className="mt-20 text-center">
              <Link to="/solutions">
                <button className="lux-button lux-button-secondary px-12 group">
                  View All Solutions 
@@ -333,7 +310,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Case Studies / Proof */}
+      {/* Case Studies */}
       <section className="pro-section relative">
         <div className="pro-container">
            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
@@ -346,7 +323,7 @@ export default function Home() {
                >
                  <h2 className="text-4xl sm:text-6xl font-bold mb-8">Proven Impact</h2>
                  <p className="text-xl text-foreground/60 leading-relaxed mb-12">
-                   Our partners experience tangible growth, streamlined operations, and enhanced brand perception.
+                   Our partners experience tangible growth and enhanced brand perception.
                  </p>
                  <div className="flex flex-col gap-10">
                    <div className="flex flex-col">
@@ -371,7 +348,6 @@ export default function Home() {
                    viewport={{ once: true }}
                    className="p-8 rounded-[2.5rem] glass border-white/5 hover:border-primary/20 transition-all duration-700 hover:scale-[1.03] hover:bg-white/[0.04] relative group"
                  >
-                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2.5rem]" />
                    <div className="relative z-10">
                      <div className="flex justify-between items-start mb-8">
                        <div className="h-14 w-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary font-bold text-xl group-hover:scale-110 transition-transform duration-500">
@@ -406,8 +382,8 @@ export default function Home() {
               <h2 className="text-5xl sm:text-7xl lg:text-8xl font-bold mb-8 tracking-tighter">
                 Ready to <span className="text-gradient-gold">Elevate</span>?
               </h2>
-              <p className="text-xl sm:text-2xl text-foreground/60 mb-12 max-w-2xl mx-auto font-light leading-relaxed text-pretty">
-                Join the elite circle of Nigerian businesses powered by Bethelmind Analytics. Let's build your legacy together.
+              <p className="text-xl sm:text-2xl text-foreground/60 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
+                Join the elite circle of Nigerian businesses powered by Bethelmind Analytics.
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-6">
                 <WhatsAppCTA source="home_cta_bottom">

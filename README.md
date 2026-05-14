@@ -1,57 +1,35 @@
-# React + TypeScript + Vite
+# Bethelmind Analytics - Modernized Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A premium digital solutions platform built for the Nigerian market, featuring high-end luxury UI/UX, integrated CRM, and WhatsApp automation.
 
-Currently, two official plugins are available:
+## Tech Stack
+- **Frontend**: React (Vite) + TypeScript + Tailwind CSS + Framer Motion
+- **Backend**: Node.js (Express) on Vercel Serverless Functions
+- **Database**: Supabase (PostgreSQL)
+- **Design**: Luxury Obsidian & Gold theme with Bento Grids and Liquid Animations
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Key Features
+- **Luxury UI**: Premium aesthetics using custom glassmorphism and motion tokens.
+- **WhatsApp Bot**: Lead generation and qualification bot for Nigerian SMEs.
+- **Market Intelligence**: Scraper for local platforms (e.g., Jiji) to analyze market trends.
+- **CRM Integration**: Lead tracking and conversion management via Supabase.
 
-## Expanding the ESLint configuration
+## Setup
+1.  **Clone & Install**:
+    ```bash
+    git clone https://github.com/ademolaaa/bethelmind-analytics
+    cd bethelmind-analytics
+    npm install
+    ```
+2.  **Environment Variables**: Create a `.env` file based on `.env.example`.
+3.  **Supabase Setup**: Run the `server/db/schema.sql` in your Supabase SQL editor.
+4.  **Local Development**:
+    ```bash
+    npm run dev
+    ```
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Deployment
+This project is optimized for deployment on **Vercel**. Simply connect the GitHub repository to your Vercel account.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  extends: [
-    // other configs...
-    // Enable lint rules for React
-    reactX.configs['recommended-typescript'],
-    // Enable lint rules for React DOM
-    reactDom.configs.recommended,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## License
+MIT
