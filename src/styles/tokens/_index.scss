@@ -1,0 +1,59 @@
+$lux-breakpoint-xs: 320px;
+$lux-breakpoint-sm: 768px;
+$lux-breakpoint-md: 1024px;
+$lux-breakpoint-lg: 1440px;
+
+:root {
+  /* Luxury Color Palette */
+  --lux-bg: hsl(var(--background)); /* Deep midnight charcoal */
+  --lux-surface: rgba(255, 255, 255, 0.05); /* Frosted glass */
+  --lux-surface-strong: rgba(255, 255, 255, 0.08); /* Stronger frosted glass */
+  --lux-ink: hsl(var(--foreground)); /* Warm champagne */
+  --lux-ink-muted: rgba(245, 240, 232, 0.72); /* Muted champagne */
+  --lux-border: rgba(212, 175, 55, 0.20); /* Subtle gold */
+  --lux-shadow: 0 20px 60px rgba(0, 0, 0, 0.45); /* Deep shadow */
+
+  /* Accent Colors */
+  --lux-accent: #d4af37; /* Gold accent */
+  --lux-accent-2: #f5f0e8; /* Champagne accent */
+  --lux-accent-ink: #0f0f0e; /* Dark text for gold */
+
+  /* Design Tokens */
+  --lux-radius-lg: 24px; /* Large rounded corners */
+  --lux-radius-md: 16px; /* Medium rounded corners */
+  --lux-radius-sm: 12px; /* Small rounded corners */
+  --lux-radius-pill: 9999px; /* Pill shape */
+
+  /* Typography */
+  --lux-font-display: "Playfair Display", ui-serif, Georgia, "Times New Roman", serif;
+  --lux-font-body: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+  /* Motion & Transitions */
+  --lux-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --lux-ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+  --lux-dur-fast: 0.22s;
+  --lux-dur: 0.32s;
+  --lux-dur-slow: 0.4s;
+
+  /* Layout */
+  --lux-max: 1200px;
+  --lux-container-padding: 2rem;
+}
+
+@media (min-width: $lux-breakpoint-lg) {
+  :root {
+    --lux-max: 1320px;
+    --lux-container-padding: 3rem;
+  }
+}
+
+/* Light theme variant for specific sections */
+.light-theme {
+  --lux-bg: #f8fafc;
+  --lux-surface: rgba(255, 255, 255, 0.85);
+  --lux-surface-strong: rgba(255, 255, 255, 0.95);
+  --lux-ink: #0f172a;
+  --lux-ink-muted: rgba(15, 23, 42, 0.7);
+  --lux-border: rgba(148, 163, 184, 0.3);
+  --lux-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}

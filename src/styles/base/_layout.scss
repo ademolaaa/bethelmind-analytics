@@ -1,0 +1,121 @@
+@use "../tokens" as *;
+
+.lux-container {
+  width: 100%;
+  max-width: var(--lux-max);
+  margin-inline: auto;
+  padding-inline: clamp(18px, 4vw, var(--lux-container-padding));
+}
+
+@media (min-width: $lux-breakpoint-sm) {
+  .lux-container {
+    padding-inline: var(--lux-container-padding);
+  }
+}
+
+.lux-section {
+  padding: 84px 0;
+  content-visibility: auto;
+  contain-intrinsic-size: 900px;
+}
+
+@media (min-width: $lux-breakpoint-md) {
+  .lux-section {
+    padding: 112px 0;
+  }
+}
+
+.lux-surface {
+  background: var(--lux-surface);
+  border: 1px solid var(--lux-border);
+  border-radius: var(--lux-radius-lg);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--lux-shadow);
+}
+
+.lux-hairline {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, rgba(184, 154, 99, 0.55), transparent);
+}
+
+.lux-metal {
+  background: linear-gradient(
+    135deg,
+    rgba(184, 154, 99, 0.24),
+    rgba(255, 255, 255, 0.22),
+    rgba(184, 154, 99, 0.16)
+  );
+}
+
+/* Premium navigation glassmorphism */
+.lux-nav {
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(212,175,55,0.20);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+}
+
+/* Hero gradient section */
+.lux-hero-gradient {
+  background: radial-gradient(1200px 600px at 12% 18%, rgba(212,175,55,0.12), transparent),
+              radial-gradient(1200px 600px at 88% 22%, rgba(79,70,229,0.14), transparent),
+              radial-gradient(1200px 600px at 50% 85%, rgba(16,185,129,0.10), transparent),
+              linear-gradient(180deg, rgba(13,17,23,1), rgba(10,12,16,1));
+  height: 100%;
+}
+
+/* CTA gradient section */
+.lux-cta-gradient {
+  background: linear-gradient(135deg, #0D1117, #111418);
+  position: relative;
+}
+.lux-cta-gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(600px 300px at 30% 20%, rgba(212,175,55,0.18), transparent),
+              radial-gradient(600px 300px at 70% 80%, rgba(232,180,184,0.12), transparent);
+  pointer-events: none;
+}
+
+/* Faint analytics grid overlay for hero */
+.lux-hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size: 40px 40px, 40px 40px;
+  opacity: 0.04;
+  pointer-events: none;
+}
+
+/* By-the-numbers stats strip */
+.lux-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  align-items: center;
+}
+.lux-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.lux-stat-number {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--lux-ink);
+}
+.lux-stat-label {
+  font-size: 0.875rem;
+  color: rgba(247, 243, 233, 0.68);
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+.lux-stats .lux-divider {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, rgba(212,175,55,0.4), transparent);
+}

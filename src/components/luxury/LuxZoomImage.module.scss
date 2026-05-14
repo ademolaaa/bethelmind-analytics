@@ -1,0 +1,21 @@
+.root {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  transform-origin: var(--lux-zoom-x, 50%) var(--lux-zoom-y, 50%);
+  transform: scale(1);
+  transition: transform var(--lux-dur) var(--lux-ease);
+  will-change: transform;
+}
+
+.root:hover .image {
+  transform: scale(var(--lux-zoom, 1.12));
+}

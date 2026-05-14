@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /funnel-analytics
+Disallow: /thank-you
+
+Sitemap: /sitemap.xml

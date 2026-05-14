@@ -1,0 +1,91 @@
+html {
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--lux-bg);
+  color: var(--lux-ink);
+  font-family: var(--lux-font-body);
+  letter-spacing: 0.01em;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--lux-font-display);
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 0.75rem;
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  margin-bottom: 0.5rem;
+}
+
+h4 {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  margin-bottom: 0.5rem;
+}
+
+p {
+  color: var(--lux-ink-muted);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+::selection {
+  background: rgba(212, 175, 55, 0.28);
+  color: var(--lux-ink);
+}
+
+/* Premium text styles */
+.text-display {
+  font-family: var(--lux-font-display);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.text-body {
+  font-family: var(--lux-font-body);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.6;
+}
+
+.text-muted {
+  color: var(--lux-ink-muted);
+}
+
+.text-gold {
+  color: hsl(var(--luxury-gold));
+  font-weight: 600;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, hsl(var(--luxury-sapphire)), hsl(var(--luxury-emerald)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Sophisticated text effects */
+.text-shadow-subtle {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.text-shadow-gold {
+  text-shadow: 0 2px 4px rgba(212, 175, 55, 0.3);
+}

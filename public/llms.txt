@@ -1,0 +1,27 @@
+Bethelmind Analytics
+
+Purpose
+- We build websites, automation, and analytics systems for Nigerian SMEs.
+- Primary CTAs: Start on WhatsApp (/whatsapp) and book a strategy call (/booking).
+
+Key pages
+- Home: /
+- Solutions hub: /solutions
+- Pricing: /pricing
+- WhatsApp intake: /whatsapp
+- Booking: /booking
+- Free audit checklist: /free-audit
+- Contact: /contact
+
+Topical focus
+- Website conversion and performance for Nigerian audiences
+- WhatsApp sales automation and CRM workflows
+- Invoice, collections, and payment automation (Paystack/Flutterwave/Monnify)
+- Dashboards and growth analytics for SME decision-making
+- School portals, admissions, and CBT systems
+
+Content standards (E-E-A-T)
+- Use Nigeria-specific context and constraints (mobile-first, trust signals, local payments, delivery realities).
+- Prefer actionable, step-by-step guidance over generic marketing claims.
+- Cite measurable outcomes when available; avoid unverifiable superlatives.
+- Include clear CTAs to /whatsapp or /booking.

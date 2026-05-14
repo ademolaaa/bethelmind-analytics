@@ -1,0 +1,197 @@
+/* Premium Button System */
+.lux-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border-radius: var(--lux-radius-pill);
+  padding: 16px 28px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(245, 240, 232, 0.1));
+  color: hsl(var(--luxury-champagne));
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(212, 175, 55, 0.2) inset;
+  transition: all var(--lux-dur) var(--lux-ease);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.lux-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.lux-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(212, 175, 55, 0.35), 0 0 0 1px rgba(212, 175, 55, 0.4) inset;
+  filter: brightness(1.1);
+  border-color: rgba(212, 175, 55, 0.5);
+}
+
+.lux-button:hover::before {
+  left: 100%;
+}
+
+.lux-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(212, 175, 55, 0.3) inset;
+}
+
+.lux-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  filter: none;
+}
+
+.lux-button:focus-visible,
+.lux-button-secondary:focus-visible,
+.lux-button-ghost:focus-visible,
+.lux-link:focus-visible,
+.lux-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.35), 0 0 0 6px rgba(245, 240, 232, 0.12), 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Secondary Button */
+.lux-button-secondary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border-radius: var(--lux-radius-pill);
+  padding: 16px 28px;
+  background: transparent;
+  border: 1px solid rgba(245, 240, 232, 0.2);
+  color: hsl(var(--luxury-champagne));
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: all var(--lux-dur) var(--lux-ease);
+  backdrop-filter: blur(10px);
+}
+
+.lux-button-secondary:hover {
+  background: rgba(245, 240, 232, 0.08);
+  border-color: rgba(245, 240, 232, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.lux-button-secondary:active {
+  transform: translateY(0);
+}
+
+/* Ghost Button */
+.lux-button-ghost {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border-radius: var(--lux-radius-pill);
+  padding: 16px 28px;
+  background: transparent;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  color: hsl(var(--luxury-gold));
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: all var(--lux-dur) var(--lux-ease);
+}
+
+.lux-button-ghost:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: rgba(212, 175, 55, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2);
+}
+
+/* Text Link */
+.lux-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: hsl(var(--luxury-champagne));
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: all var(--lux-dur) var(--lux-ease);
+  text-decoration: none;
+}
+
+.lux-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, hsl(var(--luxury-gold)), transparent);
+  transform: scaleX(0.2);
+  transform-origin: center;
+  transition: transform var(--lux-dur) var(--lux-ease), opacity var(--lux-dur) var(--lux-ease);
+  opacity: 0.8;
+}
+
+.lux-link:hover::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+/* Legacy button classes for backward compatibility */
+.lux-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: var(--lux-radius-pill);
+  padding: 12px 18px;
+  border: 1px solid var(--lux-border);
+  background: var(--lux-surface);
+  color: var(--lux-ink);
+  box-shadow: var(--lux-shadow);
+  transition: transform var(--lux-dur) var(--lux-ease), box-shadow var(--lux-dur) var(--lux-ease), background var(--lux-dur) var(--lux-ease);
+  will-change: transform;
+}
+
+.lux-btn:hover {
+  transform: translateY(-1px);
+  background: var(--lux-surface-strong);
+  box-shadow: 0 20px 56px rgba(0, 0, 0, 0.25);
+}
+
+.lux-btn:active {
+  transform: translateY(0);
+}
+
+.lux-btn[aria-disabled="true"], .lux-btn:disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.lux-btn--primary {
+  border-color: rgba(212, 175, 55, 0.4);
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.25), rgba(245, 240, 232, 0.15));
+  color: hsl(var(--luxury-champagne));
+}
+
+.lux-btn--ghost {
+  background: transparent;
+  border-color: var(--lux-border);
+  box-shadow: none;
+}

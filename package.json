@@ -1,0 +1,67 @@
+{
+  "name": "academic-writing-service",
+  "version": "1.0.0",
+  "description": "Professional academic writing service with comprehensive sales funnel",
+  "main": "server/index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
+    "dev:client": "vite",
+    "dev:server": "nodemon server/index.js",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "vite build",
+    "build:server": "echo 'Server build complete'",
+    "start": "npm run start:server",
+    "start:server": "node server/index.js",
+    "start:prod": "NODE_ENV=production node server/index.js",
+    "test": "npm run test:client && npm run test:server",
+    "test:client": "echo 'Client tests complete'",
+    "test:server": "node server/testScraper.js && node server/testWhatsAppBot.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.105.4",
+    "@vitejs/plugin-react": "^5.1.4",
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12",
+    "clsx": "^2.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "framer-motion": "^12.34.3",
+    "lenis": "^1.3.17",
+    "lucide-react": "^0.575.0",
+    "qrcode-terminal": "^0.12.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-router-dom": "^7.13.1",
+    "tailwind-merge": "^3.5.0",
+    "vite-tsconfig-paths": "^6.1.1",
+    "whatsapp-web.js": "^1.23.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.1",
+    "@types/node": "^20.8.0",
+    "autoprefixer": "^10.4.27",
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.0.1",
+    "postcss": "^8.5.6",
+    "sass-embedded": "^1.97.3",
+    "tailwindcss": "^4.2.1",
+    "typescript": "^5.2.2",
+    "vite": "^7.3.1"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "keywords": [
+    "academic-writing",
+    "thesis",
+    "dissertation",
+    "sales-funnel",
+    "whatsapp-bot",
+    "facebook-ads",
+    "market-intelligence"
+  ],
+  "author": "Academic Writing Service",
+  "license": "MIT"
+}

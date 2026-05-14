@@ -1,0 +1,17 @@
+Options -Indexes
+
+<Files "generated.php">
+  Require all denied
+</Files>
+
+RewriteEngine On
+
+RewriteCond %{REQUEST_URI} ^/config/ [OR]
+RewriteCond %{REQUEST_URI} ^/install/installed\.lock$
+RewriteRule ^ - [F,L]
+
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+RewriteRule ^ index.html [L]

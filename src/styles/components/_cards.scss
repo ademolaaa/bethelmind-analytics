@@ -1,0 +1,168 @@
+/* Premium Card System */
+.lux-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(245, 240, 232, 0.05));
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: var(--lux-radius-lg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(212, 175, 55, 0.1) inset;
+  backdrop-filter: blur(12px);
+  transition: all var(--lux-dur) var(--lux-ease);
+  overflow: hidden;
+}
+
+.lux-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.6), transparent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--lux-dur) var(--lux-ease);
+}
+
+.lux-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(212, 175, 55, 0.25);
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(212, 175, 55, 0.2) inset;
+}
+
+.lux-card:hover::before {
+  transform: scaleX(1);
+}
+
+.lux-card:active {
+  transform: translateY(-1px);
+}
+
+/* Premium Card Variants */
+.lux-card-primary {
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.15), rgba(16, 185, 129, 0.1));
+  border-color: rgba(212, 175, 55, 0.2);
+  box-shadow: 0 20px 40px rgba(79, 70, 229, 0.25), 0 0 0 1px rgba(212, 175, 55, 0.15) inset;
+}
+
+.lux-card-primary::before {
+  background: linear-gradient(90deg, transparent, hsl(var(--luxury-sapphire)), transparent);
+}
+
+.lux-card-primary:hover {
+  border-color: rgba(212, 175, 55, 0.35);
+  box-shadow: 0 28px 60px rgba(79, 70, 229, 0.35), 0 0 0 1px rgba(212, 175, 55, 0.25) inset;
+}
+
+.lux-card-dark {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(22, 30, 50, 0.6));
+  border-color: rgba(212, 175, 55, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(212, 175, 55, 0.15) inset;
+  backdrop-filter: blur(16px);
+}
+
+.lux-card-dark:hover {
+  border-color: rgba(212, 175, 55, 0.35);
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(212, 175, 55, 0.25) inset;
+}
+
+/* Interactive Card */
+.lux-card-interactive {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(245, 240, 232, 0.05));
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  border-radius: var(--lux-radius-lg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(212, 175, 55, 0.1) inset;
+  transition: all var(--lux-dur) var(--lux-ease);
+  cursor: pointer;
+}
+
+.lux-card-interactive::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.8), transparent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--lux-dur) var(--lux-ease);
+}
+
+.lux-card-interactive:hover {
+  transform: translateY(-4px);
+  border-color: rgba(212, 175, 55, 0.3);
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(212, 175, 55, 0.2) inset;
+}
+
+.lux-card-interactive:hover::before {
+  transform: scaleX(1);
+}
+
+.lux-card-interactive:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.4), 0 0 0 6px rgba(245, 240, 232, 0.3), 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* Pill Component */
+.lux-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: var(--lux-radius-pill);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(245, 240, 232, 0.08));
+  padding: 8px 12px;
+  color: hsl(var(--luxury-champagne));
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(212, 175, 55, 0.1) inset;
+  transition: all var(--lux-dur) var(--lux-ease);
+}
+
+.lux-pill-sm {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--lux-radius-pill);
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 6px 10px;
+  color: rgba(245, 240, 232, 0.8);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  backdrop-filter: blur(10px);
+}
+
+.lux-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: var(--lux-radius-pill);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(245, 240, 232, 0.07));
+  color: hsl(var(--luxury-champagne));
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(212, 175, 55, 0.12) inset;
+  backdrop-filter: blur(12px);
+}
+
+.lux-pill:hover {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(245, 240, 232, 0.12));
+  border-color: rgba(212, 175, 55, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(212, 175, 55, 0.15) inset;
+}
+
+/* Legacy card classes for backward compatibility */
+.lux-card-hover {
+  transition: transform var(--lux-dur) var(--lux-ease), box-shadow var(--lux-dur) var(--lux-ease), border-color var(--lux-dur) var(--lux-ease);
+}
+
+.lux-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 24px 56px rgba(0,0,0,0.22);
+}
