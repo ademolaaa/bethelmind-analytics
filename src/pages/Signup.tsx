@@ -1,109 +1,131 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, Loader2, ShieldCheck } from "lucide-react";
 import Seo from "@/components/Seo";
 import { useContent } from "@/context/useContent";
+import GlassContainer from "@/components/luxury/GlassContainer";
+import { supabase } from "@/lib/supabase";
+import { motion } from "framer-motion";
 
 export default function Signup() {
   const navigate = useNavigate();
   const { cmsMeta } = useContent();
   const [form, setForm] = useState({ email: "", password: "" });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSignup = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+
+    try {
+      const { error: signupError } = await supabase.auth.signUp({
+        email: form.email,
+        password: form.password,
+      });
+
+      if (signupError) throw signupError;
+      
+      // Redirect to booking as a next step for lead qualification
+      navigate("/booking?signup=success");
+    } catch (err: any) {
+      setError(err.message || "An error occurred during signup.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <section className="relative overflow-hidden bg-luxury-midnight min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20">
+    <section className="relative min-h-screen flex items-center justify-center px-4 py-24 overflow-hidden mesh-gradient">
       <Seo
         title={cmsMeta["/signup"]?.title ?? "Client Portal Signup | Bethelmind Analytics"}
-        description={
-          cmsMeta["/signup"]?.description ??
-          "Create a Bethelmind Analytics client portal account to manage your project. Prefer to start fast? Book a free strategy call."
-        }
+        description={cmsMeta["/signup"]?.description ?? "Create your Bethelmind Analytics client portal account."}
         canonicalPath="/signup"
-        robots={cmsMeta["/signup"]?.robots || undefined}
-        og={{ type: "website", image: cmsMeta["/signup"]?.ogImage || "/images/lux-hero.svg" }}
-        breadcrumbs={[
-          { name: "Home", path: "/" },
-          { name: "Signup", path: "/signup" },
-        ]}
       />
-      <div className="absolute inset-0 pointer-events-none">
-        <img
-          src="/images/lux-hero.svg"
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 h-full w-full object-cover opacity-[0.03]"
-          decoding="async"
-        />
-        <div className="lux-hero-grid" />
-        <div className="absolute -top-48 right-0 h-[34rem] w-[34rem] rounded-full bg-luxury-gold/10 blur-3xl" />
-        <div className="absolute top-24 -left-24 h-[34rem] w-[34rem] rounded-full bg-luxury-sapphire/10 blur-3xl" />
+
+      {/* Background Decor */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute top-1/4 -right-20 w-96 h-96 bg-primary/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/4 -left-20 w-96 h-96 bg-accent/10 rounded-full blur-[120px]" />
       </div>
 
-      <div className="relative w-full max-w-md">
-        <div className="text-center">
-          <div className="lux-chip w-fit mx-auto">
-            <Sparkles className="h-4 w-4 text-luxury-gold" />
-            Client Portal
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="relative z-10 w-full max-w-lg"
+      >
+        <div className="text-center mb-10">
+          <div className="lux-badge mb-6 mx-auto">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Client Intelligence Portal</span>
           </div>
-          <h1 className="mt-6 text-3xl sm:text-4xl font-display font-bold tracking-tight text-luxury-champagne">
-            Create your account
+          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4 text-gradient-gold">
+            Create Your Account
           </h1>
-          <p className="mt-3 text-luxury-champagne/75">
-            Already have a project in mind?{" "}
-            <Link to="/booking" className="font-semibold text-luxury-gold hover:underline">
-              Book a strategy call
-            </Link>
-            .
+          <p className="text-foreground/60">
+            Already have a project? {" "}
+            <Link to="/booking" className="text-primary hover:underline font-medium">Book a strategy session</Link>
           </p>
         </div>
 
-        <div className="mt-8 lux-card lux-card-dark p-7 sm:p-9">
-          <form
-            className="space-y-5"
-            onSubmit={(e) => {
-              e.preventDefault();
-              navigate("/booking");
-            }}
-          >
-            <div>
-              <label htmlFor="email" className="lux-label">Email address</label>
+        <GlassContainer className="p-8 sm:p-10 !rounded-[2.5rem]">
+          <form className="space-y-6" onSubmit={handleSignup}>
+            {error && (
+              <div className="p-4 rounded-xl bg-destructive/10 border border-destructive/20 text-destructive text-sm">
+                {error}
+              </div>
+            )}
+            
+            <div className="space-y-2">
+              <label className="text-xs font-bold uppercase tracking-widest text-foreground/40 ml-1">Email Address</label>
               <input
-                id="email"
-                name="email"
                 type="email"
-                autoComplete="email"
                 required
-                className="lux-input"
-                placeholder="you@example.com"
+                className="lux-input w-full"
+                placeholder="you@company.com"
                 value={form.email}
-                onChange={(e) => setForm((p) => ({ ...p, email: e.target.value }))}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
               />
             </div>
 
-            <div>
-              <label htmlFor="password" className="lux-label">Password</label>
+            <div className="space-y-2">
+              <label className="text-xs font-bold uppercase tracking-widest text-foreground/40 ml-1">Password</label>
               <input
-                id="password"
-                name="password"
                 type="password"
-                autoComplete="new-password"
                 required
-                className="lux-input"
+                className="lux-input w-full"
                 placeholder="••••••••"
                 value={form.password}
-                onChange={(e) => setForm((p) => ({ ...p, password: e.target.value }))}
+                onChange={(e) => setForm({ ...form, password: e.target.value })}
               />
             </div>
 
-            <button type="submit" className="w-full lux-button">
-              Continue <ArrowRight className="ml-2 h-5 w-5" />
+            <button 
+              disabled={loading}
+              className="lux-button lux-button-primary w-full group py-4 h-auto"
+            >
+              {loading ? (
+                <Loader2 className="w-5 h-5 animate-spin" />
+              ) : (
+                <>
+                  Create Account
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </>
+              )}
             </button>
           </form>
 
-          <p className="mt-6 text-center text-sm text-luxury-champagne/60">
-            This portal is currently a lightweight demo. For now, the button takes you to booking.
-          </p>
-        </div>
-      </div>
+          <div className="mt-8 pt-8 border-t border-white/5 flex items-center justify-center gap-2 text-xs text-foreground/40 uppercase tracking-widest font-bold">
+            <ShieldCheck className="w-4 h-4 text-emerald-500" />
+            Enterprise-Grade Security Encrypted
+          </div>
+        </GlassContainer>
+
+        <p className="mt-8 text-center text-sm text-foreground/40">
+          By signing up, you agree to our <Link to="/terms" className="underline">Terms</Link> and <Link to="/privacy" className="underline">Privacy Policy</Link>.
+        </p>
+      </motion.div>
     </section>
   );
 }
