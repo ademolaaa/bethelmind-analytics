@@ -185,7 +185,7 @@ export default function BookingPage() {
                       <div className="space-y-8">
                         <div className="space-y-3">
                           <label className="text-xs font-bold uppercase tracking-widest text-foreground/30 ml-1">Primary Goal</label>
-                          <select name="goal" required onChange={handleChange} value={formData.goal} className="lux-input w-full cursor-pointer">
+                          <select name="goal" title="Primary Goal" required onChange={handleChange} value={formData.goal} className="lux-input w-full cursor-pointer">
                             <option value="">Select an objective...</option>
                             <option value="scale_leads">Scale Lead Generation (10x)</option>
                             <option value="automate_ops">Automate Operations & Reduce Cost</option>
@@ -195,7 +195,7 @@ export default function BookingPage() {
                         </div>
                         <div className="space-y-3">
                           <label className="text-xs font-bold uppercase tracking-widest text-foreground/30 ml-1">Solution Interest</label>
-                          <select name="service" required onChange={handleChange} value={formData.service} className="lux-input w-full cursor-pointer">
+                          <select name="service" title="Solution Interest" required onChange={handleChange} value={formData.service} className="lux-input w-full cursor-pointer">
                             <option value="">Select a system...</option>
                             <option value="whatsapp_sales">WhatsApp Sales Machine</option>
                             <option value="school_digitization">School Digitization System</option>
@@ -237,7 +237,7 @@ export default function BookingPage() {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                         <div className="space-y-3">
                           <label className="text-xs font-bold uppercase tracking-widest text-foreground/30 ml-1">Monthly Revenue</label>
-                          <select name="revenue" required onChange={handleChange} value={formData.revenue} className="lux-input w-full cursor-pointer">
+                          <select name="revenue" title="Monthly Revenue" required onChange={handleChange} value={formData.revenue} className="lux-input w-full cursor-pointer">
                             <option value="">Select range...</option>
                             <option value="under_1m">Under ₦1M</option>
                             <option value="1m_5m">₦1M - ₦5M</option>
@@ -247,7 +247,7 @@ export default function BookingPage() {
                         </div>
                         <div className="space-y-3">
                           <label className="text-xs font-bold uppercase tracking-widest text-foreground/30 ml-1">Investment Budget</label>
-                          <select name="budget" required onChange={handleChange} value={formData.budget} className="lux-input w-full cursor-pointer">
+                          <select name="budget" title="Investment Budget" required onChange={handleChange} value={formData.budget} className="lux-input w-full cursor-pointer">
                             <option value="">Select budget...</option>
                             <option value="500k_1.5m">₦500k - ₦1.5M</option>
                             <option value="1.5m_5m">₦1.5M - ₦5M</option>
@@ -258,7 +258,7 @@ export default function BookingPage() {
 
                       <div className="space-y-3">
                         <label className="text-xs font-bold uppercase tracking-widest text-foreground/30 ml-1">Target Live Date</label>
-                        <select name="timeline" required onChange={handleChange} value={formData.timeline} className="lux-input w-full cursor-pointer">
+                        <select name="timeline" title="Target Live Date" required onChange={handleChange} value={formData.timeline} className="lux-input w-full cursor-pointer">
                           <option value="">When do we go live?</option>
                           <option value="immediate">Immediate (Ready now)</option>
                           <option value="next_month">Next 30 Days</option>

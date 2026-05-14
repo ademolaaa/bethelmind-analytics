@@ -245,6 +245,18 @@ app.post('/api/sync-campaign', (req, res) => {
   }
 });
 
+app.post('/api/sync-market', async (req, res) => {
+  try {
+    const { syncMarketData } = require('./syncMarketData');
+    // Start sync in background
+    syncMarketData();
+    res.json({ message: 'Market intelligence sync initiated in background' });
+  } catch (error) {
+    console.error('Error initiating market sync:', error);
+    res.status(500).json({ error: 'Failed to initiate market sync' });
+  }
+});
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error('Server error:', err);
