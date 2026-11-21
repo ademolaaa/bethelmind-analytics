@@ -1,9 +1,29 @@
 {
   "version": 2,
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/index.js" },
-    { "source": "/whatsapp/(.*)", "destination": "/api/index.js" },
-    { "source": "/scrape/(.*)", "destination": "/api/index.js" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/affiliates",
+      "destination": "/affiliates/index.html"
+    },
+    {
+      "source": "/affiliate",
+      "destination": "/affiliates/index.html"
+    },
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/whatsapp/(.*)",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/scrape/(.*)",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ]
 }
