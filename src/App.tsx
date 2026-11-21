@@ -25,7 +25,7 @@ const BlogIndex = lazy(() => import("@/pages/BlogIndex"));
 const BlogPost = lazy(() => import("@/pages/BlogPost"));
 const CampaignLanding = lazy(() => import("@/pages/CampaignLanding"));
 
-export default function App() {
+const AffiliatesPage = lazy(() => import("@/pages/AffiliatesPage"));\nexport default function App() {
   return (
     <ContentProvider>
       <Router>
@@ -33,7 +33,16 @@ export default function App() {
         <TrackingBootstrap />
         <MetaPixelPageView />
         <FunnelTracker />
-        <Routes>
+        <Routes>\n          <Route path="/affiliates" element={
+            <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-black"><div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-emerald-500" /></div>}>
+              <AffiliatesPage />
+            </Suspense>
+          } />
+          <Route path="/affiliate" element={
+            <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-black"><div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-emerald-500" /></div>}>
+              <AffiliatesPage />
+            </Suspense>
+          } />\n
           <Route path="/admin" element={
             <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-luxury-champagne"><div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-luxury-gold" /></div>}>
               <Admin />
