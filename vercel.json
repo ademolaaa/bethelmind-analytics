@@ -3,11 +3,15 @@
   "rewrites": [
     {
       "source": "/affiliates",
-      "destination": "/affiliates/index.html"
+      "destination": "/affiliates.html"
     },
     {
       "source": "/affiliate",
-      "destination": "/affiliates/index.html"
+      "destination": "/affiliates.html"
+    },
+    {
+      "source": "/partner",
+      "destination": "/partner.html"
     },
     {
       "source": "/api/(.*)",
