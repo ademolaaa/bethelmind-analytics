@@ -2,6 +2,10 @@
   "version": 2,
   "rewrites": [
     {
+      "source": "/thank-you",
+      "destination": "/thank-you.html"
+    },
+    {
       "source": "/affiliates",
       "destination": "/affiliates.html"
     },
